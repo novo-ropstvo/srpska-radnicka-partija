@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>Galerija-Srpska radnička partija – Za prava radnika</title>
+<meta name="description" content="Srpska radnička partija je pokret radnika, nezaposlenih i ugroženih slojeva društva. Borimo se za dostojanstvo rada, socijalnu pravdu i efikasnu, ne-birokratsku državu." />
+
+<link rel="canonical" href="https://novo-ropstvo.github.io/srpska-radnicka-partija/" />
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Srpska radnička partija – Za prava radnika">
+<meta property="og:description" content="Pokret za prava radnika, socijalnu pravdu i efikasnu državu. Pročitaj program, preuzmi materijale i priključi se.">
+<meta property="og:url" content="https://novo-ropstvo.github.io/srpska-radnicka-partija/">
+<meta property="og:image" content="https://novo-ropstvo.github.io/srpska-radnicka-partija/images/logo.png">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Srpska radnička partija – Za prava radnika">
+<meta name="twitter:description" content="Pokret za prava radnika i socijalnu pravdu.">
+<meta name="twitter:image" content="https://novo-ropstvo.github.io/srpska-radnicka-partija/images/logo.png">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Srpska radnička partija – Za prava radnika">
+<meta name="twitter:description" content="Pokret za prava radnika i socijalnu pravdu.">
+<meta name="twitter:image" content="https://TVOJ-USERNAEM.github.io/srpska-radnicka-partija/images/logo.png">
+
+  <title>Galerija – Srpska radnička partija</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Osnovni grid za galeriju (ako već imaš u style.css, ovo je samo osiguranje) */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+
+    .gallery-item {
+      border-radius: 0.9rem;
+      overflow: hidden;
+      background: #020617;
+      aspect-ratio: 4 / 3;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-caption {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 0.35rem 0.5rem;
+      font-size: 0.75rem;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+      color: #e5e7eb;
+    }
+
+    @media (max-width: 900px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 700px) {
+      .gallery-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    /* Slider na vrhu galerije */
+    .srp-slider {
+      position: relative;
+      border-radius: 1.2rem;
+      overflow: hidden;
+      background: #020617;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.65);
+      margin-bottom: 2.5rem;
+    }
+
+    .srp-slide {
+      display: none;
+      position: relative;
+    }
+
+    .srp-slide.active {
+      display: block;
+    }
+
+    .srp-slide img {
+      width: 100%;
+      max-height: 380px;
+      object-fit: contain;
+      background: radial-gradient(circle at top, #111827, #020617);
+    }
+
+    .srp-slide-caption {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 0.6rem 1rem;
+      background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+      color: #e5e7eb;
+      font-size: 0.9rem;
+    }
+
+    .srp-slider-nav {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+
+    .srp-slider-btn {
+      pointer-events: auto;
+      border: none;
+      background: rgba(15,23,42,0.7);
+      color: #e5e7eb;
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      margin: 0 0.6rem;
+      font-size: 1.2rem;
+    }
+
+    .srp-slider-dots {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0.4rem;
+      display: flex;
+      justify-content: center;
+      gap: 0.4rem;
+    }
+
+    .srp-slider-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(148,163,184,0.6);
+      cursor: pointer;
+    }
+
+    .srp-slider-dot.active {
+      background: #ef4444;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.85);
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: min(900px, 96vw);
+      max-height: 90vh;
+      padding: 0.75rem;
+      border-radius: 1rem;
+      background: #020617;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      z-index: 1;
+    }
+
+    .lightbox-content img {
+      max-width: 100%;
+      max-height: 70vh;
+      object-fit: contain;
+      border-radius: 0.5rem;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 0.25rem;
+      right: 0.35rem;
+      border: none;
+      background: transparent;
+      color: #e5e7eb;
+      font-size: 2rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .lightbox-caption {
+      color: #e5e7eb;
+      font-size: 0.85rem;
+      text-align: center;
+      margin-top: 0.25rem;
+    }
+
+    .lightbox-actions {
+      display: flex;
+      justify-content: center;
+      margin-top: 0.25rem;
+    }
+
+    .lightbox-download {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      color: #e5e7eb;
+      text-decoration: none;
+      font-size: 0.8rem;
+    }
+
+    .lightbox-download:hover {
+      background: #e5e7eb;
+      color: #020617;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container navbar">
+      <a href="index.html" class="logo">
+        <div class="logo-mark">SRP</div>
+        <span>Srpska radnička partija</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Početna</a></li>
+          <li><a href="program.html">Program</a></li>
+          <li><a href="clanstvo.html">Članstvo</a></li>
+          <li><a href="galerija.html">Galerija</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+      </nav>
+      <button class="burger" aria-label="Otvori meni">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <h1>Galerija i materijali</h1>
+        <p>
+          Logo, slogan, plakati i tematske kartice Srpske radničke partije. Klikni na bilo koju sliku da je uvećaš
+          i preuzmeš.
+        </p>
+      </div>
+    </section>
+
+    <!-- Slider: logo, slogan, plakat -->
+    <section class="section">
+      <div class="container">
+        <div class="srp-slider" id="srp-slider">
+          <div class="srp-slide active">
+            <img src="images/logo.png" alt="Logo Srpske radničke partije" loading="lazy" />
+            <div class="srp-slide-caption">Logo Srpske radničke partije</div>
+          </div>
+          <div class="srp-slide">
+            <img src="images/slogan.png" alt="Slogan Za prava radnika" loading="lazy" />
+            <div class="srp-slide-caption">Slogan „За права радника“</div>
+          </div>
+          <div class="srp-slide">
+            <img src="images/plakat-8-tacaka.png" alt="Plakat 8 hitnih tačaka" loading="lazy" />
+            <div class="srp-slide-caption">Plakat: 8 hitnih tačaka za izlazak Srbije iz krize</div>
+          </div>
+
+          <div class="srp-slider-nav">
+            <button class="srp-slider-btn srp-slider-prev" type="button">‹</button>
+            <button class="srp-slider-btn srp-slider-next" type="button">›</button>
+          </div>
+          <div class="srp-slider-dots">
+            <span class="srp-slider-dot active" data-index="0"></span>
+            <span class="srp-slider-dot" data-index="1"></span>
+            <span class="srp-slider-dot" data-index="2"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Glavne kategorije galerije -->
+    <section class="section">
+      <div class="container">
+
+        <!-- Identitet i glavni plakati -->
+        <h2 class="section-title" style="margin-bottom:0.8rem;">Identitet i glavni plakati</h2>
+        <div class="gallery-grid" style="margin-bottom:2rem;">
+          <figure class="gallery-item">
+            <img src="images/logo.png" alt="Logo Srpske radničke partije" loading="lazy" />
+            <figcaption class="gallery-caption">Logo Srpske radničke partije</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/slogan.png" alt="Slogan Za prava radnika" loading="lazy" />
+            <figcaption class="gallery-caption">Slogan „За права радника“</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/srp.png" alt="Oznaka SRP" loading="lazy" />
+            <figcaption class="gallery-caption">Oznaka / znak SRP</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/plakat-8-tacaka.png" alt="Plakat 8 hitnih tačaka" loading="lazy" />
+            <figcaption class="gallery-caption">Plakat: 8 hitnih tačaka za izlazak Srbije iz krize</figcaption>
+          </figure>
+        </div>
+
+        <!-- Rad, sindikati i radnička prava -->
+        <h2 class="section-title" style="margin-bottom:0.8rem;">Rad, sindikati i radnička prava</h2>
+        <div class="gallery-grid" style="margin-bottom:2rem;">
+          <figure class="gallery-item">
+            <img src="images/radno-pravo.png" alt="Radno pravo" loading="lazy" />
+            <figcaption class="gallery-caption">Radno pravo</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/radnicko-pravo.png" alt="Radničko pravo" loading="lazy" />
+            <figcaption class="gallery-caption">Radničko pravo</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/radni-narod.png" alt="Radni narod" loading="lazy" />
+            <figcaption class="gallery-caption">Za radni narod</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/sindikat.png" alt="Sindikat" loading="lazy" />
+            <figcaption class="gallery-caption">Sindikat</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/sindikalno-udruzivanje.png" alt="Sindikalno udruživanje" loading="lazy" />
+            <figcaption class="gallery-caption">Sindikalno udruživanje</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/rizici-prekarnog-rada.png" alt="Rizici prekarnog rada" loading="lazy" />
+            <figcaption class="gallery-caption">Rizici prekarnog rada</figcaption>
+          </figure>
+        </div>
+
+        <!-- Ekonomija, porezi i razvoj -->
+        <h2 class="section-title" style="margin-bottom:0.8rem;">Ekonomija, porezi i razvoj</h2>
+        <div class="gallery-grid" style="margin-bottom:2rem;">
+          <figure class="gallery-item">
+            <img src="images/ekonomija.png" alt="Ekonomija" loading="lazy" />
+            <figcaption class="gallery-caption">Ekonomija</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/reforma-poreskog-sistema.png" alt="Reforma poreskog sistema" loading="lazy" />
+            <figcaption class="gallery-caption">Reforma poreskog sistema</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/javni-prihod.png" alt="Javni prihodi države" loading="lazy" />
+            <figcaption class="gallery-caption">Javni prihodi države</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/porezi.png" alt="Poreska politika" loading="lazy" />
+            <figcaption class="gallery-caption">Poreska politika</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/zdrava-ekonomija.png" alt="Zdrava ekonomija" loading="lazy" />
+            <figcaption class="gallery-caption">Zdrava ekonomija</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/zelena-ekonomija.png" alt="Zelena ekonomija" loading="lazy" />
+            <figcaption class="gallery-caption">Zelena ekonomija</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/industrija.png" alt="Industrija" loading="lazy" />
+            <figcaption class="gallery-caption">Industrija</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/inovacije.png" alt="Inovacije i razvoj" loading="lazy" />
+            <figcaption class="gallery-caption">Inovacije i razvoj</figcaption>
+          </figure>
+        </div>
+
+        <!-- Država, institucije i prava -->
+        <h2 class="section-title" style="margin-bottom:0.8rem;">Država, institucije i prava</h2>
+        <div class="gallery-grid" style="margin-bottom:2rem;">
+          <figure class="gallery-item">
+            <img src="images/drzava.png" alt="Država za građane" loading="lazy" />
+            <figcaption class="gallery-caption">Država za građane</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/efikasna-drzava.png" alt="Efikasna država" loading="lazy" />
+            <figcaption class="gallery-caption">Efikasna država</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/transparentnost.png" alt="Transparentnost i odgovornost" loading="lazy" />
+            <figcaption class="gallery-caption">Transparentnost i odgovornost</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/vladavina-prava.png" alt="Vladavina prava" loading="lazy" />
+            <figcaption class="gallery-caption">Vladavina prava</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/informacije.png" alt="Pravo na informacije" loading="lazy" />
+            <figcaption class="gallery-caption">Pravo na informacije</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/glas-gradjana.png" alt="Glas građana" loading="lazy" />
+            <figcaption class="gallery-caption">Glas građana</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/digitalna-prava.png" alt="Digitalna prava" loading="lazy" />
+            <figcaption class="gallery-caption">Digitalna prava i podaci</figcaption>
+          </figure>
+        </div>
+
+        <!-- Društvo, socijalna pravda, obrazovanje, selo -->
+        <h2 class="section-title" style="margin-bottom:0.8rem;">Društvo, socijalna pravda, obrazovanje i selo</h2>
+        <div class="gallery-grid">
+          <figure class="gallery-item">
+            <img src="images/obrazovanje.png" alt="Obrazovanje" loading="lazy" />
+            <figcaption class="gallery-caption">Obrazovanje</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/besplatno-obrazovanje.png" alt="Besplatno obrazovanje" loading="lazy" />
+            <figcaption class="gallery-caption">Besplatno obrazovanje</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/socijalna-zastita.png" alt="Socijalna zaštita" loading="lazy" />
+            <figcaption class="gallery-caption">Socijalna zaštita</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/socijalna-pravda.png" alt="Socijalna pravda" loading="lazy" />
+            <figcaption class="gallery-caption">Socijalna pravda</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/penzioni-sistem.png" alt="Penzioni sistem" loading="lazy" />
+            <figcaption class="gallery-caption">Penzioni sistem</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/stanovanje.png" alt="Stanovanje" loading="lazy" />
+            <figcaption class="gallery-caption">Stanovanje</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/selo.png" alt="Selo" loading="lazy" />
+            <figcaption class="gallery-caption">Povratak na selo</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/kultura.png" alt="Kultura" loading="lazy" />
+            <figcaption class="gallery-caption">Kultura</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/sport.png" alt="Sport" loading="lazy" />
+            <figcaption class="gallery-caption">Sport i omladina</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/mladi.png" alt="Mladi" loading="lazy" />
+            <figcaption class="gallery-caption">Mladi i budućnost</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/demografska-politika.png" alt="Demografska politika" loading="lazy" />
+            <figcaption class="gallery-caption">Demografska politika</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/infrastruktura.png" alt="Infrastruktura" loading="lazy" />
+            <figcaption class="gallery-caption">Infrastruktura</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/javni-prevoz.png" alt="Javni prevoz" loading="lazy" />
+            <figcaption class="gallery-caption">Javni prevoz</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/zeleno.png" alt="Zelena politika" loading="lazy" />
+            <figcaption class="gallery-caption">Zelena politika</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/energetska-bezbednost.png" alt="Energetska bezbednost" loading="lazy" />
+            <figcaption class="gallery-caption">Energetska bezbednost</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/evropske-integracije.png" alt="Evropske integracije" loading="lazy" />
+            <figcaption class="gallery-caption">Evropske integracije</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/rodna-ravnopravnost.png" alt="Rodna ravnopravnost" loading="lazy" />
+            <figcaption class="gallery-caption">Rodna ravnopravnost</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/zanat.png" alt="Zanati i struke" loading="lazy" />
+            <figcaption class="gallery-caption">Zanati i struke</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="images/zz.png" alt="Zaštita zdravlja i života" loading="lazy" />
+            <figcaption class="gallery-caption">Zaštita zdravlja i života</figcaption>
+          </figure>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- LIGHTBOX za uvećanje slika -->
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <div class="lightbox-backdrop"></div>
+    <div class="lightbox-content">
+      <button class="lightbox-close" aria-label="Zatvori">&times;</button>
+      <img id="lightbox-img" src="" alt="" />
+      <div id="lightbox-caption" class="lightbox-caption"></div>
+      <div class="lightbox-actions">
+        <a id="lightbox-download" class="lightbox-download" href="#" download>Preuzmi sliku</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>© Srpska radnička partija.</div>
+      <div class="footer-links">
+        <a href="program.html">Program</a>
+        <a href="kontakt.html">Kontakt</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // burger meni
+    (function () {
+      var burger = document.querySelector(".burger");
+      var navLinks = document.querySelector(".nav-links");
+      if (burger && navLinks) {
+        burger.addEventListener("click", function () {
+          navLinks.classList.toggle("open");
+        });
+      }
+    })();
+
+    // slider
+    (function () {
+      var slides = document.querySelectorAll(".srp-slide");
+      var dots = document.querySelectorAll(".srp-slider-dot");
+      var prevBtn = document.querySelector(".srp-slider-prev");
+      var nextBtn = document.querySelector(".srp-slider-next");
+      if (!slides.length) return;
+
+      var current = 0;
+
+      function showSlide(index) {
+        slides[current].classList.remove("active");
+        if (dots[current]) dots[current].classList.remove("active");
+        current = (index + slides.length - 0) % slides.length;
+        if (current < 0) current = slides.length - 1;
+        slides[current].classList.add("active");
+        if (dots[current]) dots[current].classList.add("active");
+      }
+
+      prevBtn && prevBtn.addEventListener("click", function () {
+        showSlide((current - 1 + slides.length) % slides.length);
+      });
+
+      nextBtn && nextBtn.addEventListener("click", function () {
+        showSlide((current + 1) % slides.length);
+      });
+
+      dots.forEach(function (dot) {
+        dot.addEventListener("click", function () {
+          var idx = parseInt(dot.getAttribute("data-index"), 10) || 0;
+          showSlide(idx);
+        });
+      });
+    })();
+
+    // lightbox
+    (function () {
+      var lightbox = document.getElementById("lightbox");
+      var lightboxImg = document.getElementById("lightbox-img");
+      var lightboxCaption = document.getElementById("lightbox-caption");
+      var lightboxDownload = document.getElementById("lightbox-download");
+
+      if (!lightbox || !lightboxImg || !lightboxCaption || !lightboxDownload) return;
+
+      var galleryImages = document.querySelectorAll(".gallery-item img");
+      var closeBtn = lightbox.querySelector(".lightbox-close");
+      var backdrop = lightbox.querySelector(".lightbox-backdrop");
+
+      function closeLightbox() {
+        lightbox.classList.remove("open");
+        lightboxImg.src = "";
+        lightboxImg.alt = "";
+        lightboxCaption.textContent = "";
+        lightboxDownload.href = "#";
+      }
+
+      galleryImages.forEach(function (img) {
+        img.addEventListener("click", function () {
+          lightboxImg.src = img.src;
+          lightboxImg.alt = img.alt || "";
+          var capElement = img.closest(".gallery-item").querySelector(".gallery-caption");
+          lightboxCaption.textContent = capElement ? capElement.textContent : "";
+          lightboxDownload.href = img.src;
+          var parts = img.src.split("/");
+          lightboxDownload.download = parts[parts.length - 1] || "srp-material.png";
+          lightbox.classList.add("open");
+        });
+      });
+
+      closeBtn && closeBtn.addEventListener("click", closeLightbox);
+      backdrop && backdrop.addEventListener("click", closeLightbox);
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && lightbox.classList.contains("open")) {
+          closeLightbox();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
