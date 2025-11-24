@@ -1,13 +1,19 @@
+/* ================================
+   Osnovna tema
+================================ */
+
 :root {
   --crvena: #c80024;
   --plava: #003f8c;
   --bela: #ffffff;
-  --tamna: #111111;
   --siva: #f3f4f6;
+  --tamna: #020617;
   --tekst: #111827;
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -24,7 +30,9 @@ body {
   line-height: 1.6;
 }
 
-/* Layout osnovno */
+/* ================================
+   Layout
+================================ */
 
 .container {
   max-width: 1100px;
@@ -32,14 +40,16 @@ body {
   padding: 0 1rem;
 }
 
-/* Header / Navigacija */
+/* ================================
+   Header / Navigacija
+================================ */
 
 header {
   background: var(--tamna);
   color: var(--bela);
   position: sticky;
   top: 0;
-  z-index: 50;
+  z-index: 40;
 }
 
 .navbar {
@@ -56,22 +66,27 @@ header {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
+  font-size: 0.85rem;
+  text-decoration: none;
+  color: var(--bela);
 }
 
 .logo-mark {
   width: 32px;
   height: 32px;
   border-radius: 999px;
-  background: linear-gradient(135deg, var(--crvena), var(--plava));
+  background: radial-gradient(circle at 30% 0, #f97373, var(--crvena) 55%, var(--plava) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 0.7rem;
 }
 
+/* Linkovi */
+
 .nav-links {
   display: flex;
-  gap: 1.25rem;
+  gap: 1.4rem;
   list-style: none;
 }
 
@@ -97,6 +112,8 @@ header {
   width: 100%;
 }
 
+/* Burger */
+
 .burger {
   display: none;
   background: transparent;
@@ -104,100 +121,28 @@ header {
   cursor: pointer;
 }
 
-/* crte */
 .burger span {
   display: block;
   width: 22px;
   height: 2px;
   background: #e5e7eb;
   margin: 4px 0;
+  border-radius: 999px;
 }
 
-/* MOBILNA VERZIJA */
-@media (max-width: 768px) {
-  .navbar {
-    padding-right: 0.75rem; /* malo vazduha od desne ivice */
-  }
-
-  .nav-links {
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 100vh;
-    width: 70%;
-    max-width: 260px;
-    padding: 5rem 1.5rem 2rem;
-    flex-direction: column;
-    align-items: flex-start;
-    background: #020617;
-    box-shadow: -12px 0 30px rgba(0, 0, 0, 0.6);
-    transform: translateX(100%);
-    transition: transform 0.25s ease-out;
-    z-index: 50;
-  }
-
-  .nav-links.open {
-    transform: translateX(0);
-  }
-
- @media (max-width: 768px) {
-
-  .burger {
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 42px;
-    height: 42px;
-    padding: 0;
-    margin-left: auto;
-    margin-right: 0.75rem;
-    border-radius: 999px;
-    background: rgba(15, 23, 42, 0.9);
-    z-index: 999;              /* samo iznad header-a */
-    position: relative;
-  }
-
-  /* Menija */
-  .nav-links {
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 100vh;
-    width: 72%;
-    max-width: 290px;
-    padding: 5rem 1.5rem 2rem;
-    flex-direction: column;
-    align-items: flex-start;
-    background: #020617;
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
-    z-index: 998;              /* ispod burgera */
-  }
-
-  .nav-links.open {
-    transform: translateX(0);
-  }
-
-  /* Kad se meni otvori – sakrij burger */
-  .nav-links.open ~ .burger {
-    opacity: 0;
-    pointer-events: none;
-  }
-}
-
-
-/* Hero sekcija */
+/* ================================
+   Hero sekcija (početna)
+================================ */
 
 .hero {
-  background: radial-gradient(circle at top left, var(--plava) 0, #020617 45%, #020617 100%);
+  background: radial-gradient(circle at top left, var(--plava) 0, #04101f 38%, var(--tamna) 100%);
   color: var(--bela);
   padding: 4rem 0 3rem;
 }
 
 .hero-inner {
   display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(0, 1.5fr);
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
   gap: 2.5rem;
   align-items: center;
 }
@@ -207,11 +152,11 @@ header {
   letter-spacing: 0.16em;
   font-size: 0.8rem;
   font-weight: 600;
-  color: #e5e7eb;
+  color: #bfdbfe;
 }
 
 .hero h1 {
-  font-size: 2.4rem;
+  font-size: 2.5rem;
   margin: 0.75rem 0;
 }
 
@@ -229,53 +174,17 @@ header {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  margin-top: 1rem;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.65rem 1.2rem;
-  border-radius: 999px;
-  border: none;
-  cursor: pointer;
-  font-size: 0.95rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.15s ease;
-}
-
-.btn-primary {
-  background: var(--crvena);
-  color: var(--bela);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
-}
-
-.btn-primary:hover {
-  background: #a0001e;
-  transform: translateY(-1px);
-}
-
-.btn-outline {
-  border: 1px solid rgba(248, 250, 252, 0.4);
-  color: var(--bela);
-  background: transparent;
-}
-
-.btn-outline:hover {
-  background: rgba(15, 23, 42, 0.7);
-  transform: translateY(-1px);
+  margin-top: 1.1rem;
 }
 
 .hero-badge {
-  margin-top: 1.5rem;
+  margin-top: 1.6rem;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.4rem 0.8rem;
+  padding: 0.45rem 0.9rem;
   border-radius: 999px;
-  border: 1px solid rgba(248, 250, 252, 0.18);
+  border: 1px solid rgba(148, 163, 184, 0.7);
   font-size: 0.8rem;
   color: #e5e7eb;
 }
@@ -312,7 +221,7 @@ header {
   font-size: 0.75rem;
   border-radius: 999px;
   padding: 0.3rem 0.7rem;
-  background: rgba(15, 23, 42, 0.9);
+  background: rgba(15, 23, 42, 0.95);
   border: 1px solid rgba(148, 163, 184, 0.5);
 }
 
@@ -321,7 +230,47 @@ header {
   color: #9ca3af;
 }
 
-/* Sekcije index-a */
+/* Dugmad */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1.3rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.btn-primary {
+  background: var(--crvena);
+  color: var(--bela);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.4);
+}
+
+.btn-primary:hover {
+  background: #a0001e;
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  border: 1px solid rgba(248, 250, 252, 0.4);
+  color: var(--bela);
+  background: transparent;
+}
+
+.btn-outline:hover {
+  background: rgba(15, 23, 42, 0.7);
+  transform: translateY(-1px);
+}
+
+/* ================================
+   Sekcije, kartice, grid
+================================ */
 
 .section {
   padding: 3rem 0;
@@ -340,7 +289,7 @@ header {
 }
 
 .section-title {
-  font-size: 1.6rem;
+  font-size: 1.7rem;
   margin-top: 0.4rem;
 }
 
@@ -417,7 +366,7 @@ header {
   font-size: 0.93rem;
 }
 
-/* Sekcija uključi se */
+/* Koraci (uključi se) */
 
 .steps {
   display: grid;
@@ -438,10 +387,12 @@ header {
   margin-bottom: 0.4rem;
 }
 
-/* Footer */
+/* ================================
+   Footer
+================================ */
 
 footer {
-  background: #020617;
+  background: var(--tamna);
   color: #9ca3af;
   padding: 1.5rem 0;
   margin-top: 2rem;
@@ -469,7 +420,9 @@ footer {
   color: #e5e7eb;
 }
 
-/* Formulari */
+/* ================================
+   Formulari
+================================ */
 
 form {
   background: #ffffff;
@@ -526,7 +479,9 @@ textarea:focus {
   color: #6b7280;
 }
 
-/* Galerija */
+/* ================================
+   Galerija
+================================ */
 
 .gallery-grid {
   display: grid;
@@ -537,9 +492,10 @@ textarea:focus {
 .gallery-item {
   border-radius: 0.9rem;
   overflow: hidden;
-  background: #020617;
+  background: var(--tamna);
   aspect-ratio: 4 / 3;
   position: relative;
+  cursor: pointer;
 }
 
 .gallery-item img {
@@ -560,89 +516,8 @@ textarea:focus {
   color: #e5e7eb;
 }
 
-/* Stranice – naslov */
+/* Lightbox */
 
-.page-hero {
-  padding: 2.5rem 0 1rem;
-  background: #020617;
-  color: #e5e7eb;
-}
-
-.page-hero h1 {
-  font-size: 1.9rem;
-}
-
-.page-hero p {
-  margin-top: 0.5rem;
-  color: #9ca3af;
-}
-
-/* Responsivnost */
-
-@media (max-width: 900px) {
-  .hero-inner {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .cards {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .steps {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .gallery-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .twocol {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
-
-@media (max-width: 700px) {
-  .nav-links {
-    position: absolute;
-    inset: 52px 0 auto 0;
-    background: #020617;
-    flex-direction: column;
-    padding: 0.8rem 1rem 1rem;
-    border-bottom: 1px solid #1f2937;
-    display: none;
-  }
-
-  .nav-links.open {
-    display: flex;
-  }
-
-  .burger {
-    display: flex;
-  }
-
-  .hero {
-    padding-top: 3rem;
-  }
-
-  .hero h1 {
-    font-size: 1.8rem;
-  }
-
-  .cards,
-  .steps,
-  .gallery-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .form-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .footer-inner {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-/* Lightbox za galeriju */
 .lightbox {
   position: fixed;
   inset: 0;
@@ -702,45 +577,71 @@ textarea:focus {
   margin-top: 0.25rem;
 }
 
-/* Navigacija – desktop */
-.nav-links {
-  display: flex;
-  gap: 1.5rem;
-  list-style: none;
+/* ================================
+   Stranice – naslov (page-hero)
+================================ */
+
+.page-hero {
+  padding: 2.5rem 0 1.2rem;
+  background: var(--tamna);
+  color: #e5e7eb;
 }
 
-/* Burger je po difoltu sakriven na većim ekranima */
-.burger {
-  display: none;
-  background: transparent;
-  border: none;
-  cursor: pointer;
+.page-hero h1 {
+  font-size: 1.9rem;
 }
 
-.burger span {
-  display: block;
-  width: 22px;
-  height: 2px;
-  background: #e5e7eb;
-  margin: 4px 0;
+.page-hero p {
+  margin-top: 0.5rem;
+  color: #9ca3af;
 }
 
-/* Mobilna navigacija */
+/* ================================
+   Responsivnost
+================================ */
+
+@media (max-width: 900px) {
+  .hero-inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .twocol {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
+  /* mobilna navigacija – drawer */
+  .navbar {
+    padding-right: 0.75rem;
+  }
+
   .nav-links {
     position: fixed;
     top: 0;
     right: 0;
     height: 100vh;
-    width: 70%;
-    max-width: 260px;
+    width: 72%;
+    max-width: 290px;
     padding: 5rem 1.5rem 2rem;
     flex-direction: column;
     align-items: flex-start;
     background: #020617;
     box-shadow: -12px 0 30px rgba(0, 0, 0, 0.6);
     transform: translateX(100%);
-    transition: transform 0.25s ease-out;
+    transition: transform 0.28s ease-out;
     z-index: 50;
   }
 
@@ -753,8 +654,39 @@ textarea:focus {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0.4rem;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    margin-left: auto;
+    margin-right: 0.75rem;
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.9);
+    border: none;
     z-index: 60;
+  }
+
+  .hero {
+    padding-top: 3rem;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
   }
 }
 
+@media (max-width: 700px) {
+  .cards,
+  .steps,
+  .gallery-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .form-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
