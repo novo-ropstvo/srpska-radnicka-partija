@@ -206,13 +206,21 @@
     </div>
   </footer>
 
-  <script>
-    // burger meni
-    const burger = document.querySelector(".burger");
-    const navLinks = document.querySelector(".nav-links");
-    if (burger && navLinks) {
-      burger.addEventListener("click", () => navLinks.classList.toggle("open"));
-    }
+   <script>
+    // Mobilni burger meni
+    document.addEventListener("DOMContentLoaded", function () {
+      var burger = document.querySelector(".burger");
+      var navLinks = document.querySelector(".nav-links");
+
+      if (!burger || !navLinks) return;
+
+      burger.addEventListener("click", function () {
+        navLinks.classList.toggle("open");
+      });
+    });
   </script>
+</body>
+</html>
+
 </body>
 </html>
