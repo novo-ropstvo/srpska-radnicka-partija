@@ -632,7 +632,17 @@ textarea:focus {
   }
 }
 /* Mobilna navigacija – drawer meni */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
+
+  .nav-links {
+    display: none;
+  }
+
+  .nav-links.open {
+    display: flex;
+    transform: translateX(0);
+  }
+
   .navbar {
     padding-right: 0.75rem;
   }
@@ -654,10 +664,6 @@ textarea:focus {
     z-index: 50;
   }
 
-  .nav-links.open {
-    transform: translateX(0);
-  }
-
   .burger {
     display: inline-flex;
     flex-direction: column;
@@ -665,7 +671,6 @@ textarea:focus {
     align-items: center;
     width: 40px;
     height: 40px;
-    padding: 0;
     margin-left: auto;
     margin-right: 0.75rem;
     border-radius: 999px;
@@ -674,4 +679,5 @@ textarea:focus {
     z-index: 60;
   }
 }
+
 
