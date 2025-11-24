@@ -1,19 +1,13 @@
-/* ================================
-   Osnovna tema
-================================ */
-
 :root {
   --crvena: #c80024;
   --plava: #003f8c;
   --bela: #ffffff;
+  --tamna: #111111;
   --siva: #f3f4f6;
-  --tamna: #020617;
   --tekst: #111827;
 }
 
-*,
-*::before,
-*::after {
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -25,14 +19,12 @@ html {
 
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: var(--siva);
-  color: var(--tekst);
+  background: var(--tamna);
+  color: var(--bela);
   line-height: 1.6;
 }
 
-/* ================================
-   Layout
-================================ */
+/* Layout */
 
 .container {
   max-width: 1100px;
@@ -40,13 +32,11 @@ body {
   padding: 0 1rem;
 }
 
-/* ================================
-   Header / Navigacija
-================================ */
+/* Header i navigacija */
 
 header {
-  background: var(--tamna);
-  color: var(--bela);
+  background: #050505;
+  border-bottom: 1px solid #1f2937;
   position: sticky;
   top: 0;
   z-index: 40;
@@ -56,7 +46,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.75rem 0;
+  padding: 0.7rem 0;
 }
 
 .logo {
@@ -82,7 +72,7 @@ header {
   font-size: 0.7rem;
 }
 
-/* Linkovi */
+/* Linkovi u navigaciji */
 
 .nav-links {
   display: flex;
@@ -91,7 +81,7 @@ header {
 }
 
 .nav-links a {
-  color: var(--bela);
+  color: #e5e7eb;
   text-decoration: none;
   font-size: 0.95rem;
   position: relative;
@@ -112,7 +102,7 @@ header {
   width: 100%;
 }
 
-/* Burger */
+/* Burger meni */
 
 .burger {
   display: none;
@@ -130,19 +120,17 @@ header {
   border-radius: 999px;
 }
 
-/* ================================
-   Hero sekcija (početna)
-================================ */
+/* Hero sekcija */
 
 .hero {
-  background: radial-gradient(circle at top left, var(--plava) 0, #04101f 38%, var(--tamna) 100%);
-  color: var(--bela);
-  padding: 4rem 0 3rem;
+  background: radial-gradient(circle at top left, #10316b 0, #020617 40%, #050505 100%);
+  color: #f9fafb;
+  padding: 3.5rem 0 3rem;
 }
 
 .hero-inner {
   display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+  grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.6fr);
   gap: 2.5rem;
   align-items: center;
 }
@@ -156,12 +144,12 @@ header {
 }
 
 .hero h1 {
-  font-size: 2.5rem;
-  margin: 0.75rem 0;
+  font-size: 2.6rem;
+  margin: 0.75rem 0 0.5rem;
 }
 
 .hero h1 span {
-  color: var(--crvena);
+  color: #f97373;
 }
 
 .hero-slogan {
@@ -175,6 +163,10 @@ header {
   flex-wrap: wrap;
   gap: 0.75rem;
   margin-top: 1.1rem;
+}
+
+.hero-cta a {
+  text-decoration: none;
 }
 
 .hero-badge {
@@ -196,12 +188,14 @@ header {
   background: #22c55e;
 }
 
+/* Hero panel desno */
+
 .hero-panel {
-  background: rgba(15, 23, 42, 0.9);
+  background: radial-gradient(circle at top, #0b1120, #020617 55%, #000000 100%);
   border-radius: 1.25rem;
   padding: 1.5rem;
-  border: 1px solid rgba(148, 163, 184, 0.5);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.85);
 }
 
 .hero-panel h2 {
@@ -222,7 +216,7 @@ header {
   border-radius: 999px;
   padding: 0.3rem 0.7rem;
   background: rgba(15, 23, 42, 0.95);
-  border: 1px solid rgba(148, 163, 184, 0.5);
+  border: 1px solid rgba(148, 163, 184, 0.6);
 }
 
 .hero-panel-footnote {
@@ -243,13 +237,14 @@ header {
   font-size: 0.95rem;
   font-weight: 600;
   text-decoration: none;
-  transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.15s ease, color 0.15s ease;
+  transition: transform 0.1s ease, box-shadow 0.1s ease,
+    background 0.15s ease, color 0.15s ease;
 }
 
 .btn-primary {
   background: var(--crvena);
   color: var(--bela);
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.5);
 }
 
 .btn-primary:hover {
@@ -259,18 +254,16 @@ header {
 
 .btn-outline {
   border: 1px solid rgba(248, 250, 252, 0.4);
-  color: var(--bela);
+  color: #f9fafb;
   background: transparent;
 }
 
 .btn-outline:hover {
-  background: rgba(15, 23, 42, 0.7);
+  background: rgba(15, 23, 42, 0.8);
   transform: translateY(-1px);
 }
 
-/* ================================
-   Sekcije, kartice, grid
-================================ */
+/* Sekcije */
 
 .section {
   padding: 3rem 0;
@@ -285,7 +278,7 @@ header {
   text-transform: uppercase;
   letter-spacing: 0.16em;
   font-size: 0.75rem;
-  color: #6b7280;
+  color: #9ca3af;
 }
 
 .section-title {
@@ -295,7 +288,7 @@ header {
 
 .section-lead {
   margin-top: 0.5rem;
-  color: #4b5563;
+  color: #d1d5db;
   font-size: 0.98rem;
 }
 
@@ -308,18 +301,18 @@ header {
 }
 
 .card {
-  background: #ffffff;
+  background: #020617;
   border-radius: 1rem;
   padding: 1.1rem 1.2rem;
-  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
-  border: 1px solid rgba(148, 163, 184, 0.4);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(55, 65, 81, 0.8);
 }
 
 .card-kicker {
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: var(--plava);
+  color: #93c5fd;
   margin-bottom: 0.25rem;
 }
 
@@ -330,7 +323,7 @@ header {
 
 .card p {
   font-size: 0.9rem;
-  color: #4b5563;
+  color: #e5e7eb;
 }
 
 .card-tag-row {
@@ -344,8 +337,8 @@ header {
   font-size: 0.7rem;
   padding: 0.2rem 0.6rem;
   border-radius: 999px;
-  background: #eff6ff;
-  color: #1d4ed8;
+  background: #0f172a;
+  color: #cbd5f5;
 }
 
 /* Dvokolona */
@@ -366,7 +359,7 @@ header {
   font-size: 0.93rem;
 }
 
-/* Koraci (uključi se) */
+/* Koraci */
 
 .steps {
   display: grid;
@@ -387,12 +380,10 @@ header {
   margin-bottom: 0.4rem;
 }
 
-/* ================================
-   Footer
-================================ */
+/* Footer */
 
 footer {
-  background: var(--tamna);
+  background: #020617;
   color: #9ca3af;
   padding: 1.5rem 0;
   margin-top: 2rem;
@@ -420,16 +411,14 @@ footer {
   color: #e5e7eb;
 }
 
-/* ================================
-   Formulari
-================================ */
+/* Formulari */
 
 form {
-  background: #ffffff;
+  background: #020617;
   border-radius: 1rem;
   padding: 1.5rem;
-  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
-  border: 1px solid rgba(148, 163, 184, 0.4);
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(55, 65, 81, 0.8);
 }
 
 .form-grid {
@@ -456,10 +445,12 @@ input[type="tel"],
 select,
 textarea {
   border-radius: 0.6rem;
-  border: 1px solid #cbd5f5;
+  border: 1px solid #374151;
   padding: 0.5rem 0.6rem;
   font-size: 0.9rem;
   font-family: inherit;
+  background: #020617;
+  color: #e5e7eb;
 }
 
 textarea {
@@ -470,18 +461,16 @@ textarea {
 input:focus,
 select:focus,
 textarea:focus {
-  outline: 2px solid var(--plava);
+  outline: 2px solid #3b82f6;
   outline-offset: 1px;
 }
 
 .form-help {
   font-size: 0.75rem;
-  color: #6b7280;
+  color: #9ca3af;
 }
 
-/* ================================
-   Galerija
-================================ */
+/* Galerija */
 
 .gallery-grid {
   display: grid;
@@ -492,7 +481,7 @@ textarea:focus {
 .gallery-item {
   border-radius: 0.9rem;
   overflow: hidden;
-  background: var(--tamna);
+  background: #020617;
   aspect-ratio: 4 / 3;
   position: relative;
   cursor: pointer;
@@ -577,13 +566,11 @@ textarea:focus {
   margin-top: 0.25rem;
 }
 
-/* ================================
-   Stranice – naslov (page-hero)
-================================ */
+/* Stranice – naslov */
 
 .page-hero {
   padding: 2.5rem 0 1.2rem;
-  background: var(--tamna);
+  background: #020617;
   color: #e5e7eb;
 }
 
@@ -596,9 +583,7 @@ textarea:focus {
   color: #9ca3af;
 }
 
-/* ================================
-   Responsivnost
-================================ */
+/* Responsivnost */
 
 @media (max-width: 900px) {
   .hero-inner {
@@ -622,58 +607,6 @@ textarea:focus {
   }
 }
 
-@media (max-width: 768px) {
-  /* mobilna navigacija – drawer */
-  .navbar {
-    padding-right: 0.75rem;
-  }
-
-  .nav-links {
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 100vh;
-    width: 72%;
-    max-width: 290px;
-    padding: 5rem 1.5rem 2rem;
-    flex-direction: column;
-    align-items: flex-start;
-    background: #020617;
-    box-shadow: -12px 0 30px rgba(0, 0, 0, 0.6);
-    transform: translateX(100%);
-    transition: transform 0.28s ease-out;
-    z-index: 50;
-  }
-
-  .nav-links.open {
-    transform: translateX(0);
-  }
-
-  .burger {
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 42px;
-    height: 42px;
-    padding: 0;
-    margin-left: auto;
-    margin-right: 0.75rem;
-    border-radius: 999px;
-    background: rgba(15, 23, 42, 0.9);
-    border: none;
-    z-index: 60;
-  }
-
-  .hero {
-    padding-top: 3rem;
-  }
-
-  .hero h1 {
-    font-size: 2rem;
-  }
-}
-
 @media (max-width: 700px) {
   .cards,
   .steps,
@@ -688,5 +621,13 @@ textarea:focus {
   .footer-inner {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .hero {
+    padding-top: 2.4rem;
+  }
+
+  .hero h1 {
+    font-size: 2.1rem;
   }
 }
